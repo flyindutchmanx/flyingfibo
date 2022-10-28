@@ -1,0 +1,36 @@
+name: Build Docker image may be
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+      - uses: actions/checkout@v2
+      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Test Images
+      - run: docker build -t asheer/flying-fibo-test -f ./client/Dockerfile.dev  ./client
+      - run: docker run asheer/flying-fibo-test npm test -- --coverage
+
+      - name: Build Prod Version of all
+      - uses: actions/checkout@v2
+      - run: docker build -t asheer/flyingfibo-client  ./client
+      - run: docker build -t asheer/flyingfibo-worker  ./worker
+      - run: docker build -t asheer/flyingfibo-nginx   ./nginx
+      - run: docker build -t asheer/flyingfibo-server  ./server
+
+      - name: push images to docker Hub
+      - run: docker push asheer/flyingfibo-server
+      - run: docker push asheer/flyingfibo-worker 
+      - run: docker push asheer/flyingfibo-nginx 
+      - run: docker push asheer/flyingfibo-server
+
+
+
+
+
