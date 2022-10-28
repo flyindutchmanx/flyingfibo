@@ -19,8 +19,6 @@ jobs:
       - run: docker build -t asheer/flyingfibo-nginx   ./nginx
       - run: docker build -t asheer/flyingfibo-server  ./server
 
-      - name: push images to docker Hub
-      - uses: docker/build-push-action@v3
       - run: docker push asheer/flyingfibo-server
       - run: docker push asheer/flyingfibo-worker 
       - run: docker push asheer/flyingfibo-nginx 
