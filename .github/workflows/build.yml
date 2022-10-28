@@ -35,6 +35,19 @@ jobs:
          docker push asheer/flyingfibo-nginx 
          docker push asheer/flyingfibo-server
 
+      - name: Deploy 2 EB
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: docker-react
+          environment_name: Dockereact-env
+          existing_bucket_name: ${{ secrets.ASS3_BUCKET }}
+          region: us-west-2
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip
+
+
 
 
 
