@@ -22,7 +22,7 @@ jobs:
         run: docker run asheer/flying-fibo-test npm test -- --coverage
        
       - name: Build for Prod
-      - run: |
+        run: |
          docker build -t asheer/flyingfibo-client  ./client
          docker build -t asheer/flyingfibo-worker  ./worker
          docker build -t asheer/flyingfibo-nginx   ./nginx
