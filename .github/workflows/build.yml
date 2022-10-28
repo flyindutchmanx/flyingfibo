@@ -12,26 +12,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Test Images
-      - uses: actions/checkout@v2
-      - run: docker build -t asheer/flying-fibo-test -f ./client/Dockerfile.dev  ./client
-      - run: docker run asheer/flying-fibo-test npm test -- --coverage
-
-      - name: Build Prod Version of all
-      - uses: actions/checkout@v2
-      - run: docker build -t asheer/flyingfibo-client  ./client
-      - run: docker build -t asheer/flyingfibo-worker  ./worker
-      - run: docker build -t asheer/flyingfibo-nginx   ./nginx
-      - run: docker build -t asheer/flyingfibo-server  ./server
-
-      - name: push images to docker Hub
-      - uses: actions/checkout@v2
-      - run: docker push asheer/flyingfibo-server
-      - run: docker push asheer/flyingfibo-worker 
-      - run: docker push asheer/flyingfibo-nginx 
-      - run: docker push asheer/flyingfibo-server
-
-
 
 
 
