@@ -19,7 +19,7 @@ jobs:
         run: docker build -t asheer/flying-fibo-test -f ./client/Dockerfile.dev  ./client
       
       - name: Run npm test 
-        run: docker run asheer/flying-fibo-test npm test 
+        run: docker run asheer/flying-fibo-test npm test -- --coverage
        
       # - uses: actions/checkout@v2
       # - name: Build prod components
