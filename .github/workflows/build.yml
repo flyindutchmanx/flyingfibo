@@ -33,7 +33,7 @@ jobs:
          docker push asheer/flyingfibo-server
          docker push asheer/flyingfibo-worker 
          docker push asheer/flyingfibo-nginx 
-         docker push asheer/flyingfibo-server
+         docker push asheer/flyingfibo-client
 
       - name: Deploy 2 EB
         uses: einaregilsson/beanstalk-deploy@v18
