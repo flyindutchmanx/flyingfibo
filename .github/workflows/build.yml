@@ -44,7 +44,7 @@ jobs:
           environment_name: Dockereact-env
           existing_bucket_name: ${{ secrets.ASS3_BUCKET }}
           region: us-west-2
-          # version_label: ${{ github.sha }}
+          version_label: ${{ github.sha }}
 
 
 
