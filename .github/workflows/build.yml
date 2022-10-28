@@ -40,10 +40,10 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: docker-react
-          environment_name: Dockereact-env
+          application_name: flyingfibo
+          environment_name: flyingfibo-env
           existing_bucket_name: ${{ secrets.ASS3_BUCKET }}
-          region: us-west-2
+          region: us-east-1
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
 
