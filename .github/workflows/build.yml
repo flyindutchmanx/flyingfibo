@@ -19,7 +19,7 @@ jobs:
         run: docker build -t asheer/flying-fibo-test -f ./client/Dockerfile.dev  ./client
       
       - name: Run npm test 
-        run: docker run asheer/flying-fibo-test npm test -- --coverage
+        run: docker run  -e CI=true asheer/flying-fibo-test npm test -- --coverage
        
       - name: Build for Prod
         run: |
@@ -28,15 +28,15 @@ jobs:
          docker build -t asheer/flyingfibo-nginx   ./nginx
          docker build -t asheer/flyingfibo-server  ./server
       
-      # - name: Push images to registry
-      #   uses: docker/build-push-action@v2
+      - name: Push images to registry
+      - uses: docker/build-push-action@v2
 
-      # - name: Pushing to DH   
-      #   run: |
-      #    docker push asheer/flyingfibo-server
-      #    docker push asheer/flyingfibo-worker 
-      #    docker push asheer/flyingfibo-nginx 
-      #    docker push asheer/flyingfibo-server
+      - name: Pushing to DH   
+        run: |
+         docker push asheer/flyingfibo-server
+         docker push asheer/flyingfibo-worker 
+         docker push asheer/flyingfibo-nginx 
+         docker push asheer/flyingfibo-server
 
 
 
