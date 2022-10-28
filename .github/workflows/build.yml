@@ -9,19 +9,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
+      - name: Git checkout
       - uses: actions/checkout@v2
-      - name: Build dev client
+
+      - name: Build dev image
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t asheer/flying-fibo-test -f ./client/Dockerfile.dev  ./client
       - run: docker run asheer/flying-fibo-test npm test 
        
-      - uses: actions/checkout@v2
-      - name: Build prod components
-      - run: docker build -t asheer/flyingfibo-client  ./client
-      - run: docker build -t asheer/flyingfibo-worker  ./worker
-      - run: docker build -t asheer/flyingfibo-nginx   ./nginx
-      - run: docker build -t asheer/flyingfibo-server  ./server
+      # - uses: actions/checkout@v2
+      # - name: Build prod components
+      # - run: docker build -t asheer/flyingfibo-client  ./client
+      # - run: docker build -t asheer/flyingfibo-worker  ./worker
+      # - run: docker build -t asheer/flyingfibo-nginx   ./nginx
+      # - run: docker build -t asheer/flyingfibo-server  ./server
 
       # - run: docker push asheer/flyingfibo-server
       # - run: docker push asheer/flyingfibo-worker 
