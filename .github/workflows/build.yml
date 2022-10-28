@@ -28,8 +28,10 @@ jobs:
          docker build -t asheer/flyingfibo-nginx   ./nginx
          docker build -t asheer/flyingfibo-server  ./server
       
-      - name: Push images to registry 
-        uses: docker/build-push-action@v2 
+      - name: Push images to registry
+        uses: docker/build-push-action@v2
+
+      - name: Pushing to DH   
         run: |
          docker push asheer/flyingfibo-server
          docker push asheer/flyingfibo-worker 
